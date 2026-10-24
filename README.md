@@ -124,8 +124,8 @@ Fetal_Health_Classification/
 Clone the repository and navigate into the project directory:
 
 ```bash
-git clone <YOUR_REPOSITORY_URL>
-cd Fetal_Health_Classification
+git clone https://github.com/shobanashri/fetal-health-classification-svm.git
+cd fetal-health-classification-svm
 ```
 
 Create and activate a virtual environment:
