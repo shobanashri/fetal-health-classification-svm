@@ -161,25 +161,175 @@ Output: A clear understanding of the data's structure and quality.
 
 
 
-statistics
+**statistics**
 
-\----------
+**----------**
 
-count -> no. of non missing observations
+**count -> no. of non missing observations**
 
-mean -> avg value
+**mean -> avg value**
 
-std -> std deviation; measure spread
+**std -> std deviation; measure spread**
 
-min -> min value
+**min -> min value**
 
-25% -> first quartile
+**25% -> first quartile**
 
-50% -> median
+**50% -> median**
 
-75% -> third quartile
+**75% -> third quartile**
 
-max -> max value
+**max -> max value**
+
+
+
+
+
+**| Actual class     | Correct predictions | Total actual cases |              Recall |**
+
+**| ---------------- | ------------------: | -----------------: | ------------------: |**
+
+**| Normal (1)       |                 324 |                330 |              98.18% |**
+
+**| Suspect (2)      |                  30 |                 58 |              51.72% |**
+
+**| Pathological (3) |                  28 |                 35 |              80.00% |**
+
+**| \*\*Total\*\*        |             \*\*382\*\* |            \*\*423\*\* | \*\*90.31% accuracy\*\* |**
+
+
+
+
+
+**| Class                | Precision | Recall | F1-score | Interpretation                           |**
+
+**| -------------------- | --------: | -----: | -------: | ---------------------------------------- |**
+
+**| Normal               |    91.78% | 98.18% |   94.88% | Excellent recall                         |**
+
+**| Suspect              |    75.00% | 51.72% |   61.22% | Needs improvement                        |**
+
+**| Pathological         |    93.33% | 80.00% |   86.15% | Good performance                         |**
+
+**| \*\*Overall accuracy\*\* |         — |      — |        — | \*\*90.31%\*\*                               |**
+
+**| Macro average F1     |         — |      — |   80.75% | Shows performance across classes equally |**
+
+
+
+
+
+***| Metric                            | Baseline SVM | Balanced SVM |***
+
+***| --------------------------------- | -----------: | -----------: |***
+
+***| Normal correctly classified       |          324 |          298 |***
+
+***| Suspect correctly classified      |           30 |           52 |***
+
+***| Pathological correctly classified |           28 |           31 |***
+
+***| Total correct predictions         |          382 |          381 |***
+
+***| Accuracy                          |       90.31% |       90.07% |***
+
+
+
+***Suspect: Correctly classified cases increased from 30 to 52.***
+
+***Pathological: Correctly classified cases increased from 28 to 31.***
+
+***Normal: Correctly classified cases decreased from 324 to 298.***
+
+***Pathological under-diagnoses: Your supplied confusion-matrix interpretation says zero Pathological cases were predicted as Normal. Please verify this directly against the matrix before recording it as a finding.***
+
+***Medical reliability: We cannot conclude that the model is safe or reliable for medical use from these results alone.***
+
+
+
+***Balanced SVM — Evaluation Findings***
+
+***------------------------------------***
+
+***Model: SVM with RBF kernel and class\_weight="balanced".***
+
+
+
+***Results:***
+
+
+
+***Accuracy: 90.07%***
+
+***Macro F1-score: 84.09%***
+
+***Normal recall: 90.30%***
+
+***Suspect recall: 89.66%***
+
+***Pathological recall: 88.57%***
+
+
+
+***### Tuned SVM — Confusion Matrix Interpretation***
+
+
+
+***The tuned SVM model correctly classified 390 of the 423 test samples, achieving a test accuracy of 92.20%.***
+
+
+
+***\* \*\*Normal:\*\* 317 of 330 cases were correctly classified.***
+
+***\* \*\*Suspect:\*\* 42 of 58 cases were correctly classified.***
+
+***\* \*\*Pathological:\*\* 31 of 35 cases were correctly classified.***
+
+
+
+***The model made 33 incorrect predictions. The Suspect class accounted for the largest number of misclassified samples, with 16 errors.***
+
+
+
+***These results show that the tuned model performs well overall, but accuracy alone is insufficient to assess its ability to identify every class. Class-wise precision, recall, and F1-score must also be examined.***
+
+
+
+***Hyperparameter Tuning***
+
+***---------------------***
+
+***GridSearchCV was used to optimize the balanced RBF SVM using five-fold stratified cross-validation and macro F1-score as the selection metric.***
+
+
+
+***Best parameters:***
+
+
+
+***C: 100***
+
+***gamma: scale***
+
+***class\_weight: balanced***
+
+***Mean cross-validation Macro F1: 84.21%***
+
+***Final Test Evaluation***
+
+
+
+***The tuned SVM achieved 92.20% test accuracy, correctly classifying 390 of the 423 test samples. Its macro F1-score was approximately 85%.***
+
+
+
+***The tuned model achieved better overall accuracy than the baseline and balanced SVM models. However, the balanced SVM achieved higher recall for the Suspect class. This highlights the trade-off between overall performance and identifying minority-class samples.***
+
+
+
+***The model's results apply to this dataset and test split. They do not establish clinical reliability or suitability for medical diagnosis.***
+
+
 
 Phase 2 — Exploratory Data Analysis (EDA)
 
